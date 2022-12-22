@@ -1,5 +1,4 @@
 const SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
-const SpeechGrammarList = window.SpeechGrammarList || webkitSpeechGrammarList;
 
 const keywordMap = new Map();
 keywordMap.set('1', 1)

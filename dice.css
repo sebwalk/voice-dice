@@ -21,7 +21,7 @@ body {
     width: 100vw;
     overflow: hidden;
 }
-body.engaged {
+body.inverted {
     border-top: solid 1px #ffffff;
 }
 .dice {

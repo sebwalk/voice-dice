@@ -34,6 +34,13 @@ function randomNumber() {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function randomNumberExcluding(number){
+  const candidate = randomNumber()
+  return candidate === number ?
+      randomNumberExcluding(number) :
+      candidate
+}
+
 let detectedNumber = randomNumber(1,6);
 
 const recognition = new SpeechRecognition();
@@ -60,14 +67,15 @@ dice.onclick = () => {
   dice.classList.toggle("odd-roll");
   dice.classList.toggle("even-roll");
 
-  dice.dataset.roll = document.body.classList.contains('engaged') ?
-      detectedNumber :
-      randomNumber()
-
-  detectedNumber = randomNumber();
+  if(document.body.classList.contains('inverted')){
+    dice.dataset.roll = randomNumberExcluding(detectedNumber);
+  } else {
+    dice.dataset.roll = detectedNumber
+    detectedNumber = randomNumber()
+  }
 }
 
 const heading = document.getElementById('heading');
 heading.onclick = () => {
-  document.body.classList.toggle('engaged');
+  document.body.classList.toggle('inverted');
 }

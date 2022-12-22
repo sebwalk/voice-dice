@@ -12,8 +12,9 @@ Only hour later a working proof-of-concept was ready to use.
 
 ### Usage
 
-Tap the "WürfelApp" heading to toggle between voice-controlled and random mode. Voice-controlled mode is discreetly
-indicated using a 1px white border at the top of the screen.
+Tap the "WürfelApp" heading to toggle between voice-controlled and inverted mode. Voice-controlled mode is discreetly
+indicated using a 1px white border at the top of the screen. When in inverted mode, you will never throw the detected
+number.
 
 Tap the dice in order to roll it.
 

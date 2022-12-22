@@ -3,25 +3,28 @@ const SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
 const keywordMap = new Map();
 keywordMap.set('1', 1)
 keywordMap.set('eins', 1)
+keywordMap.set('eines', 1)
 keywordMap.set('2', 2)
 keywordMap.set('zwei', 2)
 keywordMap.set('3', 3)
 keywordMap.set('drei', 3)
 keywordMap.set('4', 4)
+keywordMap.set('vieh', 4)
 keywordMap.set('vier', 4)
 keywordMap.set('5', 5)
 keywordMap.set('fünf', 5)
 keywordMap.set('6', 6)
 keywordMap.set('sechs', 6)
+keywordMap.set('sex', 6)
 
 function phraseToNumber(phrase){
-  return phrase
-  .split(" ")
-  .reverse()
-  .map(word => word.toLowerCase())
-  .map(word => keywordMap.get(word))
-  .filter(Boolean)
-  .at(0)
+  const keys = [
+    ...phrase.split(" ").reverse().map(word => word.toLowerCase()),
+    ...phrase.split("").reverse(),
+  ]
+  console.log(keys);
+
+  return keys.map(word => keywordMap.get(word)).find(Boolean);
 }
 
 
@@ -43,12 +46,17 @@ recognition.start();
 recognition.onresult = (event) => {
   const latestResult = event.results[event.results.length - 1];
   const latestAlternative = latestResult[0];
-  detectedNumber = phraseToNumber(latestAlternative.transcript) || detectedNumber
+  const number = phraseToNumber(latestAlternative.transcript);
+
+  if(number){
+    console.log(number)
+    detectedNumber = number
+  }
 }
 
 
 const dice = document.getElementById('dice');
-dice.onmousedown = () => {
+dice.onclick = () => {
   dice.classList.toggle("odd-roll");
   dice.classList.toggle("even-roll");
 

@@ -34,7 +34,6 @@ function randomNumber() {
 let detectedNumber = randomNumber(1,6);
 
 const recognition = new SpeechRecognition();
-recognition.grammars = new SpeechGrammarList();
 recognition.continuous = true;
 recognition.lang = 'de-DE';
 recognition.interimResults = true;
